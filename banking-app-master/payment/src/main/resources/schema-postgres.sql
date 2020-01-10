@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS client;
+CREATE TABLE client(
+  id INTEGER NOT NULL PRIMARY KEY,
+  email VARCHAR(100),
+  password VARCHAR(100)
+);
+
+DROP TABLE IF EXISTS payment;
+CREATE TABLE payment(
+  id INTEGER NOT NULL PRIMARY KEY,
+  clientId INTEGER REFERENCES client(id),
+  amount NUMERIC(4,0),
+  date BIGINT
+);
+
+DROP TABLE IF EXISTS session;
+CREATE TABLE session(
+  id INTEGER NOT NULL PRIMARY KEY,
+  clientId INTEGER REFERENCES client(id),
+  startTime BIGINT,
+  endTime BIGINT,
+  status VARCHAR(100)
+);
